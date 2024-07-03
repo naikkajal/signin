@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   signintext: {
     textAlign: "center",
     fontSize: 18,
-    fontWeight: "520",
+    fontWeight: "530",
     marginBottom: 20,
     marginTop: 7,
   },
