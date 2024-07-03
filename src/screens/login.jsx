@@ -1,51 +1,175 @@
-import { StyleSheet, Text, View,Image, TextInput  } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, TextInput, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from 'react-native';
+import React from 'react';
 import Entypo from '@expo/vector-icons/Entypo';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
+  const navigation=useNavigation();
+  const handleRegister=()=>{
+    navigation.navigate("Signup")
+  }
   return (
-    <View style={styles.container}>
-      <View>
-        <Image source={require("../assets/topimg.png")} style={styles.image} />
-        <View style={styles.hellocontainer}>
-          <Text style={styles.hellotext}>Welcome</Text>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+    >
+      <ScrollView contentContainerStyle={styles.innerContainer}>
+        <View style={styles.content}>
+          <Image source={require("../assets/topimg.png")} style={styles.image} />
+          <View style={styles.hellocontainer}>
+            <Text style={styles.hellotext}>Welcome</Text>
+          </View>
+          <View>
+            <Text style={styles.signintext}>Sign in to your account</Text>
+          </View>
+          <View style={styles.usernamecontainer}>
+            <Entypo name="user" size={20} color="black" style={styles.usericon} />
+            <TextInput
+              style={styles.usernametext}
+              placeholder="Email"
+              placeholderTextColor="#888"
+            />
+          </View>
+          <View style={styles.passwordcontainer}>
+            <Entypo name="lock" size={20} color="black" style={styles.usericon} />
+            <TextInput
+              style={styles.usernametext}
+              placeholder="Password"
+              placeholderTextColor="#888"
+            />
+          </View>
+          <Text style={styles.forgotcontainer}>Forgot your password?</Text>
         </View>
-        <View>
-          <Text style={styles.signintext}>Sign in to your account</Text>
+        <View style={styles.signcontainer}>
+          <Text style={styles.signtext}>Sign in</Text>
+          <LinearGradient
+            colors={['#8A2BE2', '#FF1493']}
+            style={styles.gradientIconContainer}
+            start={[0, 0]}
+            end={[1, 1]}
+          >
+            <AntDesign name="arrowright" size={30} color="white" />
+          </LinearGradient>
         </View>
-        <View style={styles.usernamecontainer}>
-        <Entypo name="user" size={24} color="black" style={styles.usericon} />
-        <TextInput style={styles.usernametext}/>
+        <View style={styles.donthaveacccountainer}>
+          <TouchableOpacity onPress={handleRegister}>
+          <Text style={styles.donthaveacctext}>
+            Don't have an account? <Text style={{ textDecorationLine: "underline", color: "darkblue", fontWeight: "bold" }}>Create</Text>
+          </Text>
+          </TouchableOpacity>
         </View>
-      </View>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
-export default Login
+export default Login;
 
 const styles = StyleSheet.create({
-  container:{
-    backgroundColor:"white",
-    flex:1
+  container: {
+    backgroundColor: "white",
+    flex: 1,
+  },
+  innerContainer: {
+    flexGrow: 1,
+    justifyContent: 'flex-start', 
+  },
+  content: {
+    marginTop: 0, 
   },
   image: {
     width: "100%",
     height: 200,
+    marginTop: 0, 
   },
-  hellocontainer:{
-   
+  hellocontainer: {
+    marginTop: 20,
   },
-  hellotext:{
-    textAlign:"center",
-    fontSize:50,
-    fontWeight:"bold"
+  hellotext: {
+    textAlign: "center",
+    fontSize: 50,
+    fontWeight: "bold",
   },
-  signintext:{
-    textAlign:"center",
-    fontSize:18,
-    fontWeight:"500",
+  signintext: {
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "530",
+    marginBottom: 20,
+    marginTop: 7,
   },
-  usernamecontainer:{},
-  usernametext:{}
-})
+  usernamecontainer: {
+    backgroundColor: "#f1f1f1",
+    flexDirection: "row",
+    borderRadius: 50,
+    marginHorizontal: 50,
+    marginVertical: 20,
+    elevation: 10,
+    height: 50,
+    alignItems: "center",
+  },
+  usernametext: {
+    marginLeft: 10,
+    flex: 1,
+    fontSize: 16,
+    height: "100%", 
+    borderRadius: 50,
+    paddingHorizontal: 10,
+  },
+  usericon: {
+    marginLeft: 20,
+  },
+  passwordcontainer: {
+    backgroundColor: "#f1f1f1",
+    flexDirection: "row",
+    borderRadius: 50,
+    marginHorizontal: 50,
+    marginVertical: 20,
+    elevation: 10,
+    height: 50,
+    alignItems: "center",
+  },
+  forgotcontainer: {
+    textAlign: "right",
+    marginRight: 55,
+    marginVertical: 5,
+    color: "mediumblue",
+    fontWeight: "400",
+    fontSize: 15,
+  },
+  signcontainer: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginRight: 50,
+    marginTop: 70,
+  },
+  signtext: {
+    fontSize: 32,
+    fontWeight: "600",
+    color: "black",
+    marginRight: 10, 
+  },
+  gradientIconContainer: {
+    borderRadius: 10,
+    paddingVertical:4,
+    paddingHorizontal:10
+  },
+  donthaveacccountainer: {
+    marginTop: 120,
+    alignSelf: 'center',
+  },
+  donthaveacctext: {
+    textAlign: "center",
+    fontSize: 16,
+    fontWeight: "300",
+    alignSelf: 'center',
+  },
+});
+
+
+
+
+
+
