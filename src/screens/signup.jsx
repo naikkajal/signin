@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 50,
     marginHorizontal: 50,
-    marginTop: 30,
+    marginTop: 32,
     elevation: 10,
     height: 50,
     alignItems: "center",
