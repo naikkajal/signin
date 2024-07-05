@@ -1,0 +1,47 @@
+{
+    "project_info": {
+      "project_number": "684377049952",
+      "project_id": "neighborhoodwatch-84814",
+      "storage_bucket": "neighborhoodwatch-84814.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:684377049952:android:0b6e9dd731879038ef2c05",
+          "android_client_info": {
+            "package_name": "com.neighborhoodwatch.app"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "684377049952-no72tumtp5us2fouoqnpdm9775gc8a1l.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "com.neighborhoodwatch.app",
+              "certificate_hash": "c38af76d661484bd495dd03fec728789b997bc25"
+            }
+          },
+          {
+            "client_id": "684377049952-hvouvnnude5oah285o8urfammb7ugiht.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDJ_8fTOV7_T5o0eKjA7-LrNANtKqyAhGU"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "684377049952-hvouvnnude5oah285o8urfammb7ugiht.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
