@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 50,
     marginTop: 30,
     elevation: 10,
-    height: 50,
+    height: 51,
     alignItems: "center",
   },
   usericon: {
