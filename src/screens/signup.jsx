@@ -4,18 +4,16 @@ import Entypo from '@expo/vector-icons/Entypo';
 import { Fontisto } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import { getAuth, createUserWithEmailAndPassword } from '@firebase/auth';
+import auth from '@react-native-firebase/auth';
 
-const Signup = () => {
-  const navigation = useNavigation();
+const Signup = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const auth = getAuth();
 
   const handleSignup = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigation.navigate('Login'); 
+      await auth().createUserWithEmailAndPassword(email, password);
+      navigation.navigate('Login');
     } catch (error) {
       console.error(error.message);
     }
@@ -24,28 +22,40 @@ const Signup = () => {
   return (
     <View style={styles.content}>
       <Image source={require("../assets/topimg.png")} style={styles.image} />
-      <View style={styles.hellocontainer}>
-        <Text style={styles.hellotext}>Welcome</Text>
-      </View>
-      <View>
-        <Text style={styles.signintext}>Create a new account</Text>
-      </View>
+      <Text style={styles.signup}>Create Account</Text>
+      <Text style={styles.getstarted}>Just a few quick things to get started</Text>
       <View style={styles.usernamecontainer}>
         <Entypo name="user" size={20} color="black" style={styles.usericon} />
         <TextInput
           style={styles.usernametext}
-          placeholder="Email"
-          placeholderTextColor="#888"
+          placeholder='Username'
+          placeholderTextColor={"#888"}
+        />
+      </View>
+      <View style={styles.emailcontainer}>
+        <Fontisto name="email" size={24} color="black" style={styles.emailicon} />
+        <TextInput
+          style={styles.emailtext}
+          placeholder='Email'
+          placeholderTextColor={"#888"}
           value={email}
           onChangeText={setEmail}
+        />
+      </View>
+      <View style={styles.mobilecontainer}>
+        <Entypo name="mobile" size={24} color="black" style={styles.usericon} />
+        <TextInput
+          style={styles.mobiletext}
+          placeholder='Mobile No.'
+          placeholderTextColor={"#888"}
         />
       </View>
       <View style={styles.passwordcontainer}>
         <Entypo name="lock" size={20} color="black" style={styles.usericon} />
         <TextInput
-          style={styles.usernametext}
-          placeholder="Password"
-          placeholderTextColor="#888"
+          style={styles.passwordtext}
+          placeholder='Password'
+          placeholderTextColor={"#888"}
           value={password}
           onChangeText={setPassword}
           secureTextEntry
@@ -54,31 +64,30 @@ const Signup = () => {
       <View style={styles.passwordcontainer}>
         <Fontisto name="locked" size={20} color="black" style={styles.usericon} />
         <TextInput
-          style={styles.usernametext}
-          placeholder="Confirm Password"
-          placeholderTextColor="#888"
+          style={styles.passwordtext}
+          placeholder='Confirm Password'
+          placeholderTextColor={"#888"}
           secureTextEntry
         />
       </View>
-      <View style={styles.signcontainer}>
-        <TouchableOpacity onPress={handleSignup}>
+      <View style={styles.createcontainer}>
+        <TouchableOpacity onPress={handleSignup} style={styles.signinButton}>
           <LinearGradient
             colors={['#8A2BE2', '#FF1493']}
-            style={styles.gradientIconContainer}
+            style={styles.gradientButton}
             start={[0, 0]}
             end={[1, 1]}
           >
-            <Text style={styles.signtext}>Sign up</Text>
+            <Text style={styles.signinText}>Sign Up</Text>
           </LinearGradient>
         </TouchableOpacity>
       </View>
-      <View style={styles.donthaveacccountainer}>
-        <Text style={styles.donthaveacctext}>
-          Already have an account?{' '}
-          <Text onPress={() => navigation.navigate('Login')} style={{ textDecorationLine: 'underline', color: 'darkblue', fontWeight: 'bold' }}>
-            Sign in
+      <View style={styles.alhaveacccountainer}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.alhaveacctext}>
+            Already have an account? <Text style={{ textDecorationLine: "underline", color: "darkblue", fontWeight: "bold" }}>Log In</Text>
           </Text>
-        </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -88,85 +97,124 @@ export default Signup;
 
 const styles = StyleSheet.create({
   content: {
-    marginTop: 0,
+    backgroundColor: "white",
+    flex: 1,
   },
   image: {
-    width: '100%',
-    height: 200,
-    marginTop: 0,
+    width: "120%",
+    height: "20%",
   },
-  hellocontainer: {
-    marginTop: 20,
+  signup: {
+    fontSize: 31,
+    textAlign: "center",
+    fontWeight: "bold",
+    marginTop: 40,
   },
-  hellotext: {
-    textAlign: 'center',
-    fontSize: 50,
-    fontWeight: 'bold',
-  },
-  signintext: {
-    textAlign: 'center',
-    fontSize: 18,
-    fontWeight: '530',
-    marginBottom: 20,
-    marginTop: 7,
+  getstarted: {
+    textAlign: "center",
+    marginTop: 15,
+    fontWeight: "500",
+    fontSize: 17,
   },
   usernamecontainer: {
-    backgroundColor: '#f1f1f1',
-    flexDirection: 'row',
+    backgroundColor: "#f1f1f1",
+    flexDirection: "row",
     borderRadius: 50,
     marginHorizontal: 50,
-    marginVertical: 20,
+    marginTop: 30,
     elevation: 10,
     height: 50,
-    alignItems: 'center',
+    alignItems: "center",
   },
-  usernametext: {
-    marginLeft: 10,
-    flex: 1,
-    fontSize: 16,
-    height: '100%',
+  usernametext: { 
+    textAlign: "center", 
+    flex: 1 
+  },
+  emailcontainer: {
+    backgroundColor: "#f1f1f1",
+    flexDirection: "row",
     borderRadius: 50,
-    paddingHorizontal: 10,
+    marginHorizontal: 50,
+    marginTop: 30,
+    elevation: 10,
+    height: 50,
+    alignItems: "center",
   },
   usericon: {
-    marginLeft: 20,
+    marginHorizontal: 20,
   },
-  passwordcontainer: {
-    backgroundColor: '#f1f1f1',
-    flexDirection: 'row',
+  emailicon: { 
+    marginHorizontal: 20 
+  },
+  emailtext: {
+    textAlign: "center",
+    flex: 1,
+  },
+  mobilecontainer: {
+    backgroundColor: "#f1f1f1",
+    flexDirection: "row",
     borderRadius: 50,
     marginHorizontal: 50,
-    marginVertical: 20,
+    marginTop: 30,
     elevation: 10,
     height: 50,
-    alignItems: 'center',
+    alignItems: "center",
   },
-  signcontainer: {
-    marginTop: 70,
-    marginHorizontal: 50,
+  mobiletext: { 
+    textAlign: "center", 
+    flex: 1 
   },
-  signtext: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
-    textAlign: 'center',
-  },
-  gradientIconContainer: {
+  passwordcontainer: {
+    backgroundColor: "#f1f1f1",
+    flexDirection: "row",
     borderRadius: 50,
+    marginHorizontal: 50,
+    marginTop: 32,
+    marginBottom: 20,
+    elevation: 10,
     height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: "center",
   },
-  donthaveacccountainer: {
-    marginTop: 120,
+  passwordtext: { 
+    textAlign: "center", 
+    flex: 1 
+  },
+  createcontainer: {
+    backgroundColor: "#f1f1f1",
+    flexDirection: "row",
+    borderRadius: 50,
+    marginHorizontal: 50,
+    marginTop: 30,
+    elevation: 10,
+    height: 50,
+    alignItems: "center",
+  },
+  signinButton: {
+    flex: 1,
+    borderRadius: 50,
+  },
+  gradientButton: {
+    flex: 1,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  signinText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  alhaveacccountainer: {
+    marginTop: 75,
     alignSelf: 'center',
   },
-  donthaveacctext: {
-    textAlign: 'center',
-    fontSize: 16,
-    fontWeight: '300',
+  alhaveacctext: {
+    textAlign: "center",
+    fontSize: 17,
+    fontWeight: "300",
     alignSelf: 'center',
   },
 });
+
 
 
