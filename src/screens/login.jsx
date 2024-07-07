@@ -1,15 +1,18 @@
+import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from 'react-native';
-import React from 'react';
 import Entypo from '@expo/vector-icons/Entypo';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 
+
 const Login = () => {
-  const navigation=useNavigation();
-  const handleRegister=()=>{
-    navigation.navigate("Signup")
-  }
+  const navigation = useNavigation();
+  const handleRegister = () => {
+    navigation.navigate("Signup");
+  };
+
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -30,6 +33,7 @@ const Login = () => {
               style={styles.usernametext}
               placeholder="Email"
               placeholderTextColor="#888"
+
             />
           </View>
           <View style={styles.passwordcontainer}>
@@ -43,27 +47,27 @@ const Login = () => {
           <Text style={styles.forgotcontainer}>Forgot your password?</Text>
         </View>
         <View style={styles.signcontainer}>
-          <Text style={styles.signtext}>Sign in</Text>
-          <LinearGradient
-            colors={['#8A2BE2', '#FF1493']}
-            style={styles.gradientIconContainer}
-            start={[0, 0]}
-            end={[1, 1]}
-          >
-            <AntDesign name="arrowright" size={30} color="white" />
-          </LinearGradient>
+            <LinearGradient
+              colors={['#8A2BE2', '#FF1493']}
+              style={styles.gradientIconContainer}
+              start={[0, 0]}
+              end={[1, 1]}
+            >
+              <Text style={styles.signtext}>Sign in</Text>
+            </LinearGradient>
         </View>
         <View style={styles.donthaveacccountainer}>
           <TouchableOpacity onPress={handleRegister}>
-          <Text style={styles.donthaveacctext}>
-            Don't have an account? <Text style={{ textDecorationLine: "underline", color: "darkblue", fontWeight: "bold" }}>Create</Text>
-          </Text>
+            <Text style={styles.donthaveacctext}>
+              Don't have an account? <Text style={{ textDecorationLine: "underline", color: "darkblue", fontWeight: "bold" }}>Create</Text>
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
+      <StatusBar style="auto" />
     </KeyboardAvoidingView>
   );
-}
+};
 
 export default Login;
 
@@ -74,15 +78,15 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flexGrow: 1,
-    justifyContent: 'flex-start', 
+    justifyContent: 'flex-start',
   },
   content: {
-    marginTop: 0, 
+    marginTop: 0,
   },
   image: {
     width: "100%",
     height: 200,
-    marginTop: 0, 
+    marginTop: 0,
   },
   hellocontainer: {
     marginTop: 20,
@@ -113,7 +117,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     flex: 1,
     fontSize: 16,
-    height: "100%", 
+    height: "100%",
     borderRadius: 50,
     paddingHorizontal: 10,
   },
@@ -139,22 +143,21 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   signcontainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    marginRight: 50,
     marginTop: 70,
+    marginHorizontal: 50,
   },
   signtext: {
-    fontSize: 32,
-    fontWeight: "600",
-    color: "black",
-    marginRight: 10, 
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+    textAlign: "center",
   },
   gradientIconContainer: {
-    borderRadius: 10,
-    paddingVertical:4,
-    paddingHorizontal:10
+    borderRadius: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 10,  
   },
   donthaveacccountainer: {
     marginTop: 120,
@@ -167,6 +170,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
+
 
 
 
