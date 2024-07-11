@@ -1,23 +1,16 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
+import React from 'react'
 import Entypo from '@expo/vector-icons/Entypo';
 import { Fontisto } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import auth from '@react-native-firebase/auth';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
-const Signup = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSignup = async () => {
-    try {
-      await auth().createUserWithEmailAndPassword(email, password);
-      navigation.navigate('Login');
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+const Signup = () => {
+  const navigation = useNavigation();
+  const handleRegister = () => {
+    navigation.navigate("Login");
+  }
 
   return (
     <View style={styles.content}>
@@ -160,10 +153,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
   },
-  mobiletext: { 
-    textAlign: "center", 
-    flex: 1 
-  },
+  mobiletext: { textAlign: "center" },
   passwordcontainer: {
     backgroundColor: "#f1f1f1",
     flexDirection: "row",
@@ -175,9 +165,15 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
   },
-  passwordtext: { 
-    textAlign: "center", 
-    flex: 1 
+  passwordtext: { textAlign: "center" },
+  forgotcontainer: {
+    textAlign: "right",
+    marginRight: 55,
+    marginVertical: 5,
+    color: "mediumblue",
+    fontWeight: "400",
+    fontSize: 15,
+    marginTop: 15
   },
   createcontainer: {
     backgroundColor: "#f1f1f1",
@@ -215,6 +211,3 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
-
-
-

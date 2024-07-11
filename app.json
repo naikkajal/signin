@@ -3,8 +3,6 @@
     "name": "nwatch",
     "slug": "nwatch",
     "version": "1.0.0",
-    "android": {
-      "googleServicesFile": "./google-services.json"
-    }
+    "entryPoint": "./src/App.js"
   }
 }
